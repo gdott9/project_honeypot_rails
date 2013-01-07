@@ -11,8 +11,17 @@ module ProjectHoneypotRails
     protected
 
     def verify_ip_address
-      session[:project_honeypot_safe] ||= ::ProjectHoneypot.lookup(request.remote_ip).safe?
-      handle_unverified_request if !session[:project_honeypot_safe]
+      ip_address = request.remote_ip
+      key = "httpbl_#{ip_address}"
+
+      if Rails.cache.exist?(key)
+        safe = Rails.cache.read(key)
+      else
+        safe = ::ProjectHoneypot.lookup(ip_address).safe?
+        Rails.cache.write(key, safe, expires_in: 6.hours)
+      end
+
+      handle_unverified_request unless safe
     end
 
     def handle_unverified_request
