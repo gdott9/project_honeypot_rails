@@ -25,7 +25,7 @@ module ProjectHoneypotRails
     end
 
     def handle_unverified_request
-      render :status => :forbidden, :text => "Forbidden fruit"
+      render :status => :forbidden, :text => "Forbidden"
     end
   end
 end
