@@ -8,9 +8,10 @@ Gem::Specification.new do |gem|
   gem.version       = ProjectHoneypotRails::VERSION
   gem.authors       = ["Guillaume DOTT"]
   gem.email         = ["guillaume+github@dott.fr"]
-  gem.description   = %q{project_honeypot_rails provides integration between project_honeypot and rails 3}
-  gem.summary       = gem.description
-  gem.homepage      = ""
+  gem.summary       = %q{project_honeypot_rails provides integration between project_honeypot and rails 3}
+  gem.description   = %q{project_honeypot_rails provides integration between project_honeypot and rails 3
+    to prevent suspicious IP to access your website}
+  gem.homepage      = "https://github.com/gdott9/project_honeypot_rails"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
