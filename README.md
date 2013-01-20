@@ -1,6 +1,7 @@
 # ProjectHoneypotRails
 
-TODO: Write a gem description
+ProjectHoneypotRails provides integration between [ProjectHoneypot](https://github.com/gdott9/project_honeypot)
+and Rails 3 to prevent suspicious IP to access your website.
 
 ## Installation
 
@@ -18,7 +19,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Add this line in the controllers you want to protect
+```
+protect_from_suspicious_ips
+```
+This method can take the same arguments as `before_filter` to specify the actions you want to protect.
 
 ## Contributing
 
