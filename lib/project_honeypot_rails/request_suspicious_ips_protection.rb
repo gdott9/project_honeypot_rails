@@ -14,11 +14,8 @@ module ProjectHoneypotRails
       ip_address = request.remote_ip
       key = "httpbl_#{ip_address}"
 
-      if Rails.cache.exist?(key)
-        safe = Rails.cache.read(key)
-      else
-        safe = ::ProjectHoneypot.lookup(ip_address).safe?
-        Rails.cache.write(key, safe, expires_in: 6.hours)
+      safe = Rails.cache.fetch(key, expires_in: 6.hours) do
+        ::ProjectHoneypot.lookup(ip_address).safe?
       end
 
       handle_unverified_request unless safe
